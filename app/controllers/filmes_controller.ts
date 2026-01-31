@@ -27,5 +27,11 @@ export default class FilmesController {
 
     return filme
   }
-  async destroy() {}
+
+  async destroy({ params }: HttpContext) {
+    const id = params.id
+    const filme = await Filme.findOrFail(id)
+
+    filme.delete()
+  }
 }

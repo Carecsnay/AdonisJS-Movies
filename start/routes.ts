@@ -9,6 +9,7 @@
 
 import router from '@adonisjs/core/services/router'
 const CategoriasController = () => import('#controllers/categorias_controller')
+const FilmesController = () => import('#controllers/filmes_controller')
 
 router.get('/', async () => {
   return {
@@ -17,3 +18,4 @@ router.get('/', async () => {
 })
 
 router.get('/categorias', [CategoriasController, 'index'])
+router.get('/filmes', [FilmesController, 'index'])

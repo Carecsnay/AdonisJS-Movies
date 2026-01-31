@@ -1,0 +1,9 @@
+// import type { HttpContext } from '@adonisjs/core/http'
+
+import Filme from '#models/filme'
+
+export default class FilmesController {
+  index() {
+    return Filme.query()
+  }
+}

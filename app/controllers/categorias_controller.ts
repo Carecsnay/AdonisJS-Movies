@@ -1,7 +1,9 @@
 // import type { HttpContext } from '@adonisjs/core/http'
 
+import Categoria from '#models/categoria'
+
 export default class CategoriasController {
   index() {
-    return [1, 2, 3]
+    return Categoria.query()
   }
 }

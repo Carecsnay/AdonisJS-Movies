@@ -18,4 +18,4 @@ router.get('/', async () => {
 })
 
 router.get('/categorias', [CategoriasController, 'index'])
-router.get('/filmes', [FilmesController, 'index'])
+router.resource('/filmes', FilmesController).apiOnly()

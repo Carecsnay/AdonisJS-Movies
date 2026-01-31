@@ -1,18 +1,31 @@
-# Projeto de Filmes
+# API de Filmes e Categorias
 
-Este é um projeto de API de filmes desenvolvido com AdonisJS.
+Esta é uma API RESTful para gerenciar filmes e suas respectivas categorias, construída com [AdonisJS](https://adonisjs.com/) v6.
 
-## Tecnologias Utilizadas
+## Funcionalidades
 
-*   [AdonisJS](https://adonisjs.com/)
-*   [TypeScript](https://www.typescriptlang.org/)
-*   [SQLite](https://www.sqlite.org/index.html) (para desenvolvimento)
+- CRUD completo para Filmes.
+- Listagem de Categorias.
+- Ambiente de desenvolvimento com HMR (Hot Module Replacement).
+- Linting e formatação de código com ESLint e Prettier.
 
-## Começando
+## Tecnologias Principais
+
+- [AdonisJS](https://adonisjs.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Lucid ORM](https://docs.adonisjs.com/guides/database/lucid)
+- [SQLite](https://www.sqlite.org/index.html) (padrão para desenvolvimento)
+
+## Pré-requisitos
+
+- [Node.js](https://nodejs.org/) (versão 20 ou superior)
+- [NPM](https://www.npmjs.com/) ou um gerenciador de pacotes de sua preferência.
+
+## Guia de Instalação e Execução
 
 1.  **Clone o repositório:**
     ```bash
-    git clone <url-do-repositorio>
+    git clone <URL_DO_SEU_REPOSITORIO>
     cd filmes
     ```
 
@@ -21,42 +34,74 @@ Este é um projeto de API de filmes desenvolvido com AdonisJS.
     npm install
     ```
 
-3.  **Copie o arquivo de ambiente:**
-    ```bash
-    cp .env.example .env
-    ```
+3.  **Configuração do Ambiente:**
+    - Copie o arquivo de exemplo `.env.example` para um novo arquivo `.env`.
+      ```bash
+      cp .env.example .env
+      ```
+    - Gere uma chave para a aplicação.
+      ```bash
+      node ace generate:key
+      ```
+    - O projeto está configurado para usar SQLite por padrão e não requer configuração adicional de banco de dados para o ambiente de desenvolvimento.
 
-4.  **Gere uma chave de aplicativo:**
-    ```bash
-    node ace generate:key
-    ```
-
-5.  **Execute as migrações do banco de dados:**
+4.  **Execute as Migrations:**
+    Para criar as tabelas `filmes` e `categorias` no banco de dados.
     ```bash
     node ace migration:run
     ```
 
-6.  **Inicie o servidor de desenvolvimento:**
+5.  **(Opcional) Popule o Banco de Dados:**
+    Se houver seeders disponíveis, popule o banco com dados de teste.
+    ```bash
+    node ace db:seed
+    ```
+
+6.  **Inicie o Servidor:**
+    Para iniciar o servidor em modo de desenvolvimento com recarregamento automático.
     ```bash
     npm run dev
     ```
-
-O servidor estará rodando em `http://localhost:3333`.
+    A aplicação estará disponível em `http://localhost:3333`.
 
 ## Scripts Disponíveis
 
-*   `npm run dev`: Inicia o servidor em modo de desenvolvimento com hot-reload.
-*   `npm run build`: Compila o código TypeScript para JavaScript.
-*   `npm start`: Inicia o servidor em modo de produção.
-*   `npm test`: Executa os testes.
-*   `npm run lint`: Executa o linter.
-*   `npm run format`: Formata o código com o Prettier.
+| Comando | Descrição |
+| :--- | :--- |
+| `npm run dev` | Inicia o servidor de desenvolvimento com HMR. |
+| `npm run build` | Compila o projeto TypeScript para JavaScript. |
+| `npm run start` | Inicia o servidor em modo de produção (requer `build`). |
+| `npm run test` | Executa a suíte de testes com Japa. |
+| `npm run lint` | Analisa o código em busca de erros de padrão. |
+| `npm run format`| Formata o código-fonte utilizando Prettier. |
 
-## Estrutura do Projeto
+## Endpoints da API
 
-*   `app/controllers`: Contém os controladores HTTP.
-*   `app/models`: Contém os modelos do Lucid (ORM).
-*   `config`: Contém os arquivos de configuração.
-*   `database/migrations`: Contém as migrações do banco de dados.
-*   `start/routes.ts`: Arquivo para definição de rotas.
-*   `tests`: Contém os arquivos de teste.
+A seguir, a lista de endpoints disponíveis na aplicação:
+
+### Rota Principal
+- **`GET /`**
+  - Retorna uma mensagem de boas-vindas.
+    ```json
+    {
+      "hello": "AdonisJS Movies"
+    }
+    ```
+
+### Categorias
+- **`GET /categorias`**
+  - Retorna uma lista de todas as categorias.
+
+### Filmes (API Resourceful)
+O recurso `/filmes` segue o padrão `apiOnly` do AdonisJS.
+
+| Método | URI | Ação |
+| :--- | :--- | :--- |
+| `GET` | `/filmes` | `index` - Lista todos os filmes. |
+| `POST` | `/filmes` | `store` - Cria um novo filme. |
+| `GET` | `/filmes/:id` | `show` - Exibe um filme específico. |
+| `PUT / PATCH` | `/filmes/:id` | `update` - Atualiza um filme específico. |
+| `DELETE` | `/filmes/:id` | `destroy` - Deleta um filme específico. |
+
+---
+*Readme gerado e atualizado com base na estrutura do projeto.*

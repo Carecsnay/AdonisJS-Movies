@@ -18,7 +18,7 @@ export default class Filmes extends BaseModel {
   declare duracao: string
 
   @column()
-  declare categoria_id: number
+  declare categoriaId: number
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
